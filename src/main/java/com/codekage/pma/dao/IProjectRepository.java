@@ -12,8 +12,8 @@ public interface IProjectRepository extends CrudRepository<Project, Long> {
     String projectStatusCountQuery = "select stage as projectStatus, count(*) as count from project group by stage";
 
     @Override
-    public List<Project> findAll();
+    List<Project> findAll();
 
     @Query(nativeQuery = true, value = projectStatusCountQuery)
-    public List<ProjectStatusCount> getStatusCount();
+    List<ProjectStatusCount> getStatusCount();
 }

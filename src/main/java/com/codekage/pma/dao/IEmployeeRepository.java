@@ -2,7 +2,6 @@ package com.codekage.pma.dao;
 
 import com.codekage.pma.dto.EmployeeProject;
 import com.codekage.pma.entities.Employee;
-import com.codekage.pma.entities.Project;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -15,7 +14,7 @@ public interface IEmployeeRepository extends CrudRepository<Employee, Long> {
             " e.first_name, e.last_name order by 3 desc";
 
     @Override
-    public List<Employee> findAll();
+    List<Employee> findAll();
     @Query(nativeQuery = true, value = employeeProjectsQuery)
-    public List<EmployeeProject> employeeProjects();
+    List<EmployeeProject> employeeProjects();
 }

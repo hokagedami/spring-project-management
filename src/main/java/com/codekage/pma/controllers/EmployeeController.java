@@ -2,7 +2,6 @@ package com.codekage.pma.controllers;
 
 import com.codekage.pma.dao.IEmployeeRepository;
 import com.codekage.pma.entities.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +14,12 @@ import java.util.List;
 @RequestMapping("/employees")
 public class EmployeeController {
 
-    @Autowired
+    final
     IEmployeeRepository employeeRepository;
+
+    public EmployeeController(IEmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     @GetMapping
     public String displayEmployees(Model model){
@@ -40,7 +43,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public String saveEmployee(Employee employee, Model model){
+    public String saveEmployee(Employee employee){
         // return "Saved";
         employeeRepository.save(employee);
         return "redirect:/employees";

@@ -7,7 +7,7 @@ import com.codekage.pma.dto.ProjectStatusCount;
 import com.codekage.pma.entities.Project;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +17,19 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @Autowired
+    @Value("${version}")
+    private String applicationVersion;
+
+    final
     IProjectRepository projectRepository;
 
-    @Autowired
+    final
     IEmployeeRepository employeeRepository;
+
+    public HomeController(IProjectRepository projectRepository, IEmployeeRepository employeeRepository) {
+        this.projectRepository = projectRepository;
+        this.employeeRepository = employeeRepository;
+    }
 
     @GetMapping
     public String DisplayHome(Model model) throws JsonProcessingException {
@@ -35,7 +43,8 @@ public class HomeController {
         ObjectMapper objectMapper = new ObjectMapper();
         String projectDataJsonString = objectMapper.writeValueAsString(projectData);
         model.addAttribute("projectStatusCount", projectDataJsonString);
-        System.out.println(projectData);
+
+        model.addAttribute("applicationVersion", applicationVersion);
 
           return "main/home";
     }
