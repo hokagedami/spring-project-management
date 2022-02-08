@@ -5,16 +5,17 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.List;
 
-import static javax.persistence.GenerationType.AUTO;
-import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.*;
 
 @Entity
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = AUTO)
+//    @GeneratedValue(strategy = AUTO)
 //    @Column(name = "employeeId", updatable = false, nullable = false)
 //    @GenericGenerator(name = "employee_sequence", strategy = "increment")
+    @SequenceGenerator(name = "employee_seq", allocationSize = 1)
+    @GeneratedValue(generator = "employee_seq", strategy = SEQUENCE)
     private long employeeId;
 
     private String firstName;

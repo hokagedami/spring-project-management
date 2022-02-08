@@ -6,17 +6,18 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.GenerationType.AUTO;
-import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.*;
 
 @Entity
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = AUTO)
+//    @GeneratedValue(strategy = AUTO)
 //    @Column(name = "projectId", updatable = false, nullable = false)
 //    @GeneratedValue(strategy = AUTO, generator = "project_sequence")
 //    @GenericGenerator(name = "project_sequence", strategy = "increment")
+    @SequenceGenerator(name = "project_seq", allocationSize = 1)
+    @GeneratedValue(generator = "project_seq", strategy = SEQUENCE)
     private long projectId;
 
     private  String name;
