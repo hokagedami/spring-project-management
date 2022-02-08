@@ -1,7 +1,7 @@
 package com.codekage.pma.controllers;
 
-import com.codekage.pma.dao.IEmployeeRepository;
 import com.codekage.pma.entities.Employee;
+import com.codekage.pma.services.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,17 +14,16 @@ import java.util.List;
 @RequestMapping("/employees")
 public class EmployeeController {
 
-    final
-    IEmployeeRepository employeeRepository;
+    final EmployeeService employeeService;
 
-    public EmployeeController(IEmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @GetMapping
     public String displayEmployees(Model model){
 
-        List<Employee> employees = employeeRepository.findAll();
+        List<Employee> employees = employeeService.GetAllEmployees();
         model.addAttribute("employees", employees);
 
         return "employees/list-employees";
@@ -36,7 +35,7 @@ public class EmployeeController {
         Employee newEmployee = new Employee();
         model.addAttribute("employee", newEmployee);
 
-        List<Employee> employees = employeeRepository.findAll();
+        List<Employee> employees = employeeService.GetAllEmployees();
         model.addAttribute("employees", employees);
 
         return "employees/new-employee";
@@ -45,7 +44,7 @@ public class EmployeeController {
     @PostMapping("/save")
     public String saveEmployee(Employee employee){
         // return "Saved";
-        employeeRepository.save(employee);
+        employeeService.AddNewEmployee(employee);
         return "redirect:/employees";
     }
 }
