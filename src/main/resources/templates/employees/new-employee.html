@@ -8,7 +8,7 @@
 <nav th:replace="layouts :: navbar"></nav>
 
 <div class="container">
-    <form action="/employees/save" th:object="${employee}" method="POST">
+    <form th:action="@{/employees/save}" th:object="${employee}" method="POST">
 
         <div class="form-group row">
             <label>
@@ -25,8 +25,8 @@
                 <input type="text" placeholder="Email" th:field="${employee.email}">
             </label>
         </div>
+<!--        <input type="hidden" name="_csrf" th:value="${_csrf.token}">-->
         <button class="btn btn-info col-2" type="submit">Create Employee</button>
-
     </form>
 </div>
 <footer th:replace="layouts :: footer"></footer>

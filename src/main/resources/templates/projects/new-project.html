@@ -12,7 +12,7 @@
         <h4>
             New Project
         </h4>
-        <form action="/projects/save" th:object="${project}" method="POST">
+        <form th:action="@{/projects/save}" th:object="${project}" method="POST">
 
             <div class="form-outline">
                 <label class="form-label">
@@ -49,9 +49,8 @@
                         </option>
                     </select>
                 </label>
-
             </div>
-
+<!--            <input type="hidden" name="_csrf" th:value="${_csrf.token}">-->
             <button class="btn btn-primary btn-block" type="submit">Add New Project</button>
         </form>
     </div>
