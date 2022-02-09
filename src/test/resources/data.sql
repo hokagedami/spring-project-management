@@ -1,4 +1,4 @@
--- INSERT EMPLOYEES			
+-- INSERT EMPLOYEES
 insert into employee (employee_id, first_name, last_name, email)
 values (nextval('employee_seq'), 'John', 'Warton', 'warton@gmail.com');
 insert into employee (employee_id, first_name, last_name, email)
@@ -73,3 +73,4 @@ insert into project_employee (employee_id, project_id) (select e.employee_id, p.
                                                              project p
                                                         where e.last_name = 'Henley'
                                                           AND p.name = 'Improve Intranet Security');
+

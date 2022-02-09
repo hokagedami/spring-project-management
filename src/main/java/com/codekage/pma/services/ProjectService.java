@@ -28,4 +28,8 @@ public class ProjectService {
     public void AddNewProject(Project project) {
         projectRepository.save(project);
     }
+
+    public Project GetProjectById(Long id) {
+        return projectRepository.findById(id).orElse(null);
+    }
 }

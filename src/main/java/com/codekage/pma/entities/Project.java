@@ -1,5 +1,6 @@
 package com.codekage.pma.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class Project {
     @JoinTable(name = "project_employee",
                 joinColumns = @JoinColumn(name = "project_id"),
                 inverseJoinColumns = @JoinColumn(name = "employee_id"))
+    @JsonIgnore
     private List<Employee> employees;
 
     public Project() {

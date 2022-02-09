@@ -20,7 +20,11 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public void AddNewEmployee(Employee employee) {
-        employeeRepository.save(employee);
+    public Employee AddNewEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public Employee GetEmployeeById(Long id){
+        return employeeRepository.findById(id).orElse(null);
     }
 }

@@ -2,6 +2,7 @@ package com.codekage.pma.controllers;
 
 import com.codekage.pma.entities.Employee;
 import com.codekage.pma.services.EmployeeService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public String displayEmployees(Model model){
+    public String displayEmployees(@NotNull Model model){
 
         List<Employee> employees = employeeService.GetAllEmployees();
         model.addAttribute("employees", employees);
@@ -30,7 +31,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/new")
-    public String displayEmployeeForm(Model model){
+    public String displayEmployeeForm(@NotNull Model model){
 
         Employee newEmployee = new Employee();
         model.addAttribute("employee", newEmployee);
